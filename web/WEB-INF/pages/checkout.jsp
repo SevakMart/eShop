@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: forjava
@@ -58,28 +59,22 @@
                         <p>Bill To</p>
                         <div class="form-one">
                             <form>
-                                <input type="text" placeholder="Email*">
-                                <input type="text" placeholder="First Name *">
-                                <input type="text" placeholder="Last Name *">
-                                <input type="text" placeholder="Address *">
-                                <input type="text" placeholder="Zip / Postal Code *">
-                                <select>
-                                    <option>-- Country --</option>
-                                    <option>United States</option>
-                                    <option>Bangladesh</option>
-                                    <option>UK</option>
-                                    <option>India</option>
-                                    <option>Pakistan</option>
-                                    <option>Ucrane</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
+                                <input type="text" name="email" placeholder="Email*">
+                                <input type="text" name="firstName" placeholder="First Name *">
+                                <input type="text" name="lastName" placeholder="Last Name *">
+                                <input type="text" name="address" placeholder="Address 1 *">
+                                <input type="text" name="zipCode" placeholder="Zip / Postal Code *">
+                                <select name="countryId">
+                                    <s:iterator value="#application.countries" var="country">
+                                    <option value="${country.id}">${country.countryName}</option>
+                                    </s:iterator>
                                 </select>
                                 <br>
-                                <input type="text" placeholder="Region">
-                                <input type="text" placeholder="Phone *">
-                                <input type="text" placeholder="Mobile Phone">
-                                <textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-                                <a class="btn btn-primary" href="">Continue</a>
+                                <input type="text" name="region" placeholder="Region">
+                                <input type="text" name="phone" placeholder="Phone *">
+                                <input type="text" name="mobilePhone" placeholder="Mobile Phone">
+                                <textarea name="message" placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
+                                <input type="submit" class="btn btn-primary" value="Checkout"/>
                             </form>
                         </div>
                     </div>

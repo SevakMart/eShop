@@ -91,3 +91,4 @@ public class LoginAction extends BaseAction {
         this.user = user;
     }
 }
+

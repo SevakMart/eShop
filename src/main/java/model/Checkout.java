@@ -1,41 +1,80 @@
-package action;
+package model;
 
-import dataaccess.dao.impl.CheckoutDAOImpl;
-import dataaccess.dao.impl.CountryDAOImpl;
-import model.Checkout;
+import javax.persistence.*;
 
 /**
- * Created by forjava on 11/8/2016.
+ * Created by levon on 11/28/16.
  */
-public class CheckOutAction extends BaseAction {
+@Entity
+@Table(name = "order")
+public class Checkout {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private int id;
+
+    @ManyToOne
+    @Column(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @Column(name = "product_id")
+    private Products products;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "zip_code")
     private String zipCode;
-    private int countryId;
+
+    @ManyToOne
+    @Column(name = "country_id")
+    private Country country;
+
+    @Column(name = "region")
     private String region;
+
+    @Column(name = "phone")
     private String phone;
+
+    @Column(name = "mobile_phone")
     private String mobilePhone;
+
+    @Column(name = "message")
     private String message;
 
-    @Override
-    public String execute() throws Exception {
-        Checkout checkout= new Checkout();
-        CheckoutDAOImpl checkoutDAO= new CheckoutDAOImpl();
-        CountryDAOImpl countryDAO = new CountryDAOImpl();
-        checkout.setEmail(email);
-        checkout.setFirstName(firstName);
-        checkout.setLastName(lastName);
-        checkout.setAddress(address);
-        checkout.setZipCode(zipCode);
-        checkout.setCountry(countryDAO.getEntityByID(countryId));
-        checkout.setRegion(region);
-        checkout.setPhone(phone);
-        checkout.setMobilePhone(mobilePhone);
-        checkout.setMessage(message);
-        checkoutDAO.create(checkout);
-        return SUCCESS;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
     }
 
     public String getEmail() {
@@ -78,12 +117,12 @@ public class CheckOutAction extends BaseAction {
         this.zipCode = zipCode;
     }
 
-    public int getCountryId() {
-        return countryId;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public String getRegion() {

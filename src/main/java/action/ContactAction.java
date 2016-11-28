@@ -6,9 +6,7 @@ import javax.mail.internet.MimeMessage;
 import java.text.MessageFormat;
 import java.util.Properties;
 
-/**
- * Created by forjava on 11/17/2016.
- */
+
 public class ContactAction extends BaseAction {
     private String name;
     private String email;
