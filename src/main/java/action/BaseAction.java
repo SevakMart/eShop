@@ -1,6 +1,6 @@
 package action;
 
-import com.mysql.cj.mysqlx.protobuf.MysqlxDatatypes;
+
 import com.opensymphony.xwork2.ActionSupport;
 import dataaccess.manager.impl.BrandManager;
 import dataaccess.manager.impl.CategoryManager;
@@ -11,12 +11,13 @@ import org.apache.struts2.util.ServletContextAware;
 
 import javax.servlet.ServletContext;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
 public class BaseAction extends ActionSupport implements SessionAware, ServletContextAware {
     Map<String, Object> session;
-    private Map<String, ArrayList<Category>> categories;
+    private Map<Category, List<Category>> categories;
     private ArrayList<Brand> brands;
     CategoryManager categoryManager;
     BrandManager brandManager;
@@ -38,7 +39,6 @@ public class BaseAction extends ActionSupport implements SessionAware, ServletCo
 
         brands = (ArrayList<Brand>) brandManager.getAll();
         categories = categoryManager.getCategories();
-
         System.out.println(categories);
         servletContext.setAttribute("categories", categories);
         servletContext.setAttribute("brands",brands);
