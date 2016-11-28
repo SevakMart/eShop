@@ -42,10 +42,10 @@ public class CategoryManager implements ICategoryManager {
 
         Map<Category, List<Category>> allCategories = new HashMap<>();
 
-//get main categories
+
 
         List<Category> mainCategories = categoryDAO.getCategoriesByParentId(mainParentId);
-//  get sub categories
+
 
         System.out.println(mainCategories);
         for (Category mainCategory : mainCategories) {

@@ -5,17 +5,14 @@ import dataaccess.manager.impl.ProductsManager;
 import model.Products;
 
 
-
 import java.util.ArrayList;
 
 /**
  * Created by forjava on 11/7/2016.
  */
-public class HomeAction extends BaseAction  {
+public class HomeAction extends BaseAction {
 
-    private ArrayList<Products> allProducts;
-
-
+    private ArrayList<Products> products;
 
 
     private ProductsManager productsManager;
@@ -27,19 +24,17 @@ public class HomeAction extends BaseAction  {
 
     @Override
     public String execute() throws Exception {
-        allProducts = (ArrayList<Products>) productsManager.getAll();
+        products = (ArrayList<Products>) productsManager.getAll();
         return SUCCESS;
     }
 
-    public ArrayList<Products> getAllProducts() {
-        return allProducts;
+    public ArrayList<Products> getProducts() {
+        return products;
     }
 
-    public void setAllProducts(ArrayList<Products> allProducts) {
-        this.allProducts = allProducts;
+    public void setProducts(ArrayList<Products> products) {
+        this.products = products;
     }
-
-
 
 
 }

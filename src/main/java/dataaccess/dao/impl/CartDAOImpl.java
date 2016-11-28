@@ -2,6 +2,9 @@ package dataaccess.dao.impl;
 
 import dataaccess.dao.ICartDAO;
 import model.Cart;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+import util.HibernateUtil;
 
 import java.util.List;
 
@@ -9,9 +12,14 @@ import java.util.List;
  * Created by forjava on 11/28/2016.
  */
 public class CartDAOImpl implements ICartDAO {
+
+    Session session = HibernateUtil.getSessionFactory().openSession();
+
     @Override
     public void create(Cart cart) {
-
+        session.beginTransaction();
+        session.save(cart);
+        session.getTransaction().commit();
     }
 
     @Override
@@ -21,7 +29,7 @@ public class CartDAOImpl implements ICartDAO {
 
     @Override
     public List<Cart> getAll() {
-        return null;
+        return session.createCriteria(Cart.class).list();
     }
 
     @Override
@@ -32,5 +40,10 @@ public class CartDAOImpl implements ICartDAO {
     @Override
     public void delete(Cart entity) {
 
+    }
+
+    @Override
+    public List<Cart> getProductsFromCart(int id) {
+        return session.createCriteria(Cart.class).add(Restrictions.eq("user_id",id)).list();
     }
 }

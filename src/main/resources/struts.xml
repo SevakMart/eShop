@@ -47,7 +47,7 @@
         </action>
 
         <action name="search" class="action.ProductsAction" method="search">
-            <result name="success" >/WEB-INF/pages/searchResult.jsp</result>
+            <result name="success">/WEB-INF/pages/searchResult.jsp</result>
         </action>
 
         <!--commons actions-->
@@ -60,6 +60,12 @@
             <interceptor-ref name="authenticationStack"/>
             <result name="success" type="tiles">cart.view</result>
         </action>
+
+        <action name="addToCart" class="action.CartAction" method="addToCart">
+            <interceptor-ref name="authenticationStack"/>
+            <result name="success" type="redirect">cart.action</result>
+        </action>
+
         <!--login actions-->
         <action name="view" class="action.LoginAction" method="view">
             <result name="success" type="tiles">login.view</result>
