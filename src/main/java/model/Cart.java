@@ -5,4 +5,5 @@ package model;
  */
 public class Cart {
     private int id;
+    private double price;
 }
