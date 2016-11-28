@@ -37,19 +37,19 @@ public class CategoryManager implements ICategoryManager {
     }
 
     //return all categories with his sub categories
-    public Map<String, ArrayList<Category>> getCategories() {
+    public Map<Category, List<Category>> getCategories() {
         int mainParentId = 0;
 
-        Map<String, ArrayList<Category>> allCategories = new HashMap<String, ArrayList<Category>>();
+        Map<Category, List<Category>> allCategories = new HashMap<>();
 
 //get main categories
 
-        Set<Category> mainCategories = new HashSet<Category>(categoryDAO.getCategoriesByParentId(mainParentId));
+        Set<Category> mainCategories = (Set<Category>) categoryDAO.getCategoriesByParentId(mainParentId);
 //  get sub categories
 
         System.out.println(mainCategories);
         for (Category mainCategory : mainCategories) {
-            allCategories.put(mainCategory.getName(), categoryDAO.getCategoriesByParentId(mainCategory.getId()));
+            allCategories.put(mainCategory, categoryDAO.getCategoriesByParentId(mainCategory.getId()));
         }
         return allCategories;
     }

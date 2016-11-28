@@ -1,3 +1,5 @@
 .idea
 eShop.iml
 src/main/resources/hibernate.cfg.xml
+out/
+target/

@@ -35,7 +35,7 @@ public class CategoryDAOImpl implements ICategoryDAO {
 
     }
 
-    public ArrayList<Category> getCategoriesByParentId(int id) {
-        return (ArrayList<Category>) session.createCriteria(Category.class).add(Restrictions.eq("parent_id", id)).list();
+    public List<Category> getCategoriesByParentId(int id) {
+        return (List<Category>) session.createCriteria(Category.class).add(Restrictions.eq("parent_id", id)).list();
     }
 }

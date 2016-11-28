@@ -20,6 +20,10 @@
         <mapping class="model.Category"/>
         <mapping class="model.WishProduct"/>
         <mapping class="model.Cart"/>
+<<<<<<< HEAD
 
+=======
+        <mapping class="model.Country"/>
+>>>>>>> 4af2b1cf6602733e254bf1d45dd72f19b420bcb1
     </session-factory>
 </hibernate-configuration>
