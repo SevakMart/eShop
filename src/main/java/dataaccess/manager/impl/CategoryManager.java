@@ -44,7 +44,7 @@ public class CategoryManager implements ICategoryManager {
 
 //get main categories
 
-        Set<Category> mainCategories = (Set<Category>) categoryDAO.getCategoriesByParentId(mainParentId);
+        List<Category> mainCategories = categoryDAO.getCategoriesByParentId(mainParentId);
 //  get sub categories
 
         System.out.println(mainCategories);
