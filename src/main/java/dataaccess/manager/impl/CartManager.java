@@ -1,17 +1,24 @@
 package dataaccess.manager.impl;
 
+import dataaccess.dao.ICartDAO;
+import dataaccess.dao.impl.CartDAOImpl;
 import dataaccess.manager.ICartManager;
 import model.Cart;
+import model.Products;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by forjava on 11/28/2016.
  */
 public class CartManager implements ICartManager {
+
+    ICartDAO cartDAO = new CartDAOImpl();
+
     @Override
     public void create(Cart cart) {
-
+        cartDAO.create(cart);
     }
 
     @Override
@@ -21,7 +28,7 @@ public class CartManager implements ICartManager {
 
     @Override
     public List<Cart> getAll() {
-        return null;
+        return cartDAO.getAll();
     }
 
     @Override
@@ -32,5 +39,17 @@ public class CartManager implements ICartManager {
     @Override
     public void delete(Cart entity) {
 
+    }
+
+    @Override
+    public List<Products> getProductsByUserId(int id) {
+        List<Cart> cartProducts = cartDAO.getProductsFromCart(id);
+        ProductsManager productsManager = new ProductsManager();
+        List<Products> products = new ArrayList<>();
+        for (Cart cart : cartProducts) {
+            Products product = productsManager.getEntityByID(cart.getProduct_id());
+            products.add(product);
+        }
+        return products;
     }
 }
