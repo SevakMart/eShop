@@ -20,8 +20,7 @@ public class Products {
     @ManyToOne
     private Category category;
 
-    @ManyToOne()
-
+    @ManyToOne
     private Brand brand;
 
 

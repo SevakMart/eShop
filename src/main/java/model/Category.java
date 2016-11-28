@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -13,7 +15,8 @@ public class Category {
     private String name;
     @Column
     private int parent_id;
-
+    @OneToMany
+    private List<Products> productsList = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -67,5 +70,13 @@ public class Category {
                 ", name='" + name + '\'' +
                 ", parentId=" + parent_id +
                 '}';
+    }
+
+    public List<Products> getProductsList() {
+        return productsList;
+    }
+
+    public void setProductsList(List<Products> productsList) {
+        this.productsList = productsList;
     }
 }
