@@ -19,6 +19,6 @@
         <mapping class="model.Brand"/>
         <mapping class="model.Category"/>
         <mapping class="model.WishProduct"/>
-
+        <mapping class="model.Cart"/>
     </session-factory>
 </hibernate-configuration>
