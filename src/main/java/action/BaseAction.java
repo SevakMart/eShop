@@ -1,5 +1,6 @@
 package action;
 
+import com.mysql.cj.mysqlx.protobuf.MysqlxDatatypes;
 import com.opensymphony.xwork2.ActionSupport;
 import dataaccess.manager.impl.BrandManager;
 import dataaccess.manager.impl.CategoryManager;
