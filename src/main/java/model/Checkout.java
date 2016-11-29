@@ -14,11 +14,11 @@ public class Checkout {
     private int id;
 
     @ManyToOne
-    @Column(name = "user_id")
+
     private User user;
 
     @ManyToOne
-    @Column(name = "product_id")
+
     private Products products;
 
     @Column(name = "email")
@@ -37,7 +37,7 @@ public class Checkout {
     private String zipCode;
 
     @ManyToOne
-    @Column(name = "country_id")
+
     private Country country;
 
     @Column(name = "region")

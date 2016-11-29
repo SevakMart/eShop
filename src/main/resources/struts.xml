@@ -51,6 +51,9 @@
         </action>
 
         <!--commons actions-->
+        <action name="checkoutView" class="action.CheckOutAction" method="view">
+            <result name="success" type="tiles">checkout.view</result>
+        </action>
         <action name="checkout" class="action.CheckOutAction">
             <interceptor-ref name="authenticationStack"/>
             <result name="success" type="tiles">checkout.view</result>
