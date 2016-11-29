@@ -2,7 +2,15 @@ package action;
 
 import dataaccess.dao.impl.CheckoutDAOImpl;
 import dataaccess.dao.impl.CountryDAOImpl;
+import dataaccess.manager.ICheckoutManager;
+import dataaccess.manager.ICountryManager;
+import dataaccess.manager.IProductsManager;
+import dataaccess.manager.impl.ChechkoutManager;
+import dataaccess.manager.impl.CountryManager;
+import dataaccess.manager.impl.ProductsManager;
 import model.Checkout;
+import model.Products;
+import model.User;
 
 /**
  * Created by forjava on 11/8/2016.
@@ -19,26 +27,35 @@ public class CheckOutAction extends BaseAction {
     private String mobilePhone;
     private String message;
 
+    private int productId;
+    private int quantity;
+
+
+
     @Override
     public String execute() throws Exception {
         Checkout checkout = new Checkout();
-        CheckoutDAOImpl checkoutDAO = new CheckoutDAOImpl();
-        CountryDAOImpl countryDAO = new CountryDAOImpl();
+        IProductsManager productsManager= new ProductsManager();
+        ICheckoutManager checkoutManager= new ChechkoutManager();
+        ICountryManager countryManager= new CountryManager();
+        checkout.setUser((User) session.get("user"));
+        checkout.setProducts(productsManager.getEntityByID(productId));
         checkout.setEmail(email);
         checkout.setFirstName(firstName);
         checkout.setLastName(lastName);
         checkout.setAddress(address);
         checkout.setZipCode(zipCode);
-        checkout.setCountry(countryDAO.getEntityByID(countryId));
+        checkout.setCountry(countryManager.getEntityByID(countryId));
         checkout.setRegion(region);
         checkout.setPhone(phone);
         checkout.setMobilePhone(mobilePhone);
         checkout.setMessage(message);
-        checkoutDAO.create(checkout);
+        checkoutManager.create(checkout);
         return SUCCESS;
     }
 
     public String view() {
+
         return SUCCESS;
     }
 
@@ -120,5 +137,21 @@ public class CheckOutAction extends BaseAction {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

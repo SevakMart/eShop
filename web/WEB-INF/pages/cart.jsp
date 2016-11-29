@@ -28,7 +28,7 @@
                     <td></td>
                 </tr>
                 </thead>
-                <tbody>
+
                 <s:iterator value="products">
                     <tr>
                         <td class="cart_product">
@@ -43,25 +43,53 @@
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href=""> + </a>
-                                <input class="cart_quantity_input" type="text" name="quantity" value="1"
-                                       autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href=""> - </a>
+
+                                <input id="count_<s:property value="id"/>"  class="cart_quantity_input" type="text" name="quantity" value="1"
+                                       autocomplete="off" size="2"  onchange="increase(<s:property value="price"/>,<s:property value="id"/>)"/>
+                                <input id="productId" name="productId" type="hidden" value="<s:property value="id"/>">
                             </div>
                         </td>
                         <td class="cart_total">
-                            <p class="cart_total_price">$59</p>
+                            <input id="total_<s:property value="id"/>" type="text" value="" readonly>
                         </td>
                         <td class="cart_delete">
+
+
+                            <a class=cart_quantity_delete"  href=""  onclick="sendOrder()">Order</a>
                             <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                 </s:iterator>
-                </tbody>
+
             </table>
         </div>
     </div>
 </section>
+<script>
+
+    function increase(price,id) {
+
+        var count = $("#count_"+id).val();
+        var sum= price*count;
+        $("#total_"+id).val('$'+sum);
+    }
+    
+    function sendOrder() {
+        var count = $("#count").val();
+        var productId = $("#productId").val();
+        var sendInfo = {
+            quantity:count,
+            productId: productId
+        };
+        $.ajax({
+            url: "checkoutView.action",
+            method: "post",
+            data: sendInfo,
+            success: function (answer) {
+
+            }
+        })}
+</script>
 <!--/#cart_items-->
 
 <section id="do_action">
