@@ -12,11 +12,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "cart")
 public class Cart {
-
+    @Id
     @Column
     private int product_id;
 
-    @Id
+
     @Column
     private int user_id;
 

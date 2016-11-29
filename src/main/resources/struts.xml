@@ -69,6 +69,11 @@
             <result name="success" type="redirect">cart.action</result>
         </action>
 
+        <action name="deleteCart" class="action.CartAction" method="deleteFromCart">
+            <interceptor-ref name="authenticationStack"/>
+            <result name="success" type="redirect">cart.action</result>
+        </action>
+
         <!--login actions-->
         <action name="view" class="action.LoginAction" method="view">
             <result name="success" type="tiles">login.view</result>
