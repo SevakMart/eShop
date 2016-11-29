@@ -27,8 +27,8 @@ public class CheckOutAction extends BaseAction {
     private String mobilePhone;
     private String message;
 
-    private int productId;
-    private int quantity;
+    private String productId;
+    private String quantity;
 
 
 
@@ -39,7 +39,7 @@ public class CheckOutAction extends BaseAction {
         ICheckoutManager checkoutManager= new ChechkoutManager();
         ICountryManager countryManager= new CountryManager();
         checkout.setUser((User) session.get("user"));
-        checkout.setProducts(productsManager.getEntityByID(productId));
+        checkout.setProducts(productsManager.getEntityByID(Integer.parseInt(productId)));
         checkout.setEmail(email);
         checkout.setFirstName(firstName);
         checkout.setLastName(lastName);
@@ -139,19 +139,19 @@ public class CheckOutAction extends BaseAction {
         this.message = message;
     }
 
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 }

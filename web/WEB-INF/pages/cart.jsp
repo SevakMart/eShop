@@ -44,7 +44,7 @@
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
 
-                                <input id="count_<s:property value="id"/>"  class="cart_quantity_input" type="text" name="quantity" value="1"
+                                <input id="count_<s:property value="id"/>"  class="cart_quantity_input" type="number" min="1" name="quantity" value="1"
                                        autocomplete="off" size="2"  onchange="increase(<s:property value="price"/>,<s:property value="id"/>)"/>
                                 <input id="productId" name="productId" type="hidden" value="<s:property value="id"/>">
                             </div>
@@ -55,8 +55,8 @@
                         <td class="cart_delete">
 
 
-                            <a class=cart_quantity_delete"  href=""  onclick="sendOrder()">Order</a>
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                            <a class=cart_quantity_delete"  href="checkoutView.action"  onclick="sendOrder(<s:property value="id"/>)">Order</a>
+                            <a class="cart_quantity_delete" href="deleteCart.action?productId=<s:property value="id"/> "><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                 </s:iterator>
@@ -74,12 +74,11 @@
         $("#total_"+id).val('$'+sum);
     }
     
-    function sendOrder() {
-        var count = $("#count").val();
-        var productId = $("#productId").val();
+    function sendOrder(id) {
+        var count = $("#count_"+id).val();
         var sendInfo = {
             quantity:count,
-            productId: productId
+            productId: id
         };
         $.ajax({
             url: "checkoutView.action",
