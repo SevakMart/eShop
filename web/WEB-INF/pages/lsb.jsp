@@ -18,22 +18,22 @@
 
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordian"
-                               href="">
-
-                                <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                <s:property value="key"/>
+                                <%--<a data-toggle="collapse" data-parent="#accordian"--%>
+                            <a href="productsById.action?categoryId=<s:property value="key.id"/>">
+                                    <%--<span class="badge pull-right"><i class="fa fa-plus"></i></span>--%>
+                                <s:property value="key.name"/>
                             </a>
                         </h4>
                     </div>
                     <s:if test="%{value!=null }">
-                        <div id="sportswear" class="panel-collapse collapse">
+                        <div id="subCategories" class="panel-collapse collapse" style="display: none" onclick="">
                             <div class="panel-body">
                                 <ul>
                                     <s:iterator value="value">
                                         <li>
                                             <a href="productsById.action?categoryId=<s:property value="id"/>"><s:property
-                                                    value="name"/> </a></li>
+                                                    value="name"/> </a>
+                                        </li>
                                     </s:iterator>
                                 </ul>
                             </div>
@@ -71,3 +71,8 @@
     </div>
 </div>
 
+<script>
+   function subCategories() {
+      $("#subCategories").show();
+   }
+</script>
