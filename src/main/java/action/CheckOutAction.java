@@ -21,8 +21,8 @@ public class CheckOutAction extends BaseAction {
 
     @Override
     public String execute() throws Exception {
-        Checkout checkout= new Checkout();
-        CheckoutDAOImpl checkoutDAO= new CheckoutDAOImpl();
+        Checkout checkout = new Checkout();
+        CheckoutDAOImpl checkoutDAO = new CheckoutDAOImpl();
         CountryDAOImpl countryDAO = new CountryDAOImpl();
         checkout.setEmail(email);
         checkout.setFirstName(firstName);
@@ -35,6 +35,10 @@ public class CheckOutAction extends BaseAction {
         checkout.setMobilePhone(mobilePhone);
         checkout.setMessage(message);
         checkoutDAO.create(checkout);
+        return SUCCESS;
+    }
+
+    public String view() {
         return SUCCESS;
     }
 

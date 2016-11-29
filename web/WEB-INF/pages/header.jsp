@@ -72,7 +72,7 @@
                         <li><a href="#" class="fa fa-user">welcome <s:property value="#session.user.name"/> </a></li>
                         <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                         <li><a href="viewWishList.action"><i class="fa fa-star"></i> Wishlist</a></li>
-                        <li><a href="checkout.action"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                        <li><a href="checkoutView.action"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                         <li><a href="cart.action"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                         <s:if test="%{#session.user == null }">
                             <li><a href="view.action"><i class="fa fa-lock"></i> Login</a></li>
