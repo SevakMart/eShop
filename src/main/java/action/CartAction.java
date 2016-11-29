@@ -36,11 +36,19 @@ public class CartAction extends BaseAction {
         return ERROR;
     }
 
+    public String deleteFromCart() {
+        Cart cart = cartManager.getEntityByID(Integer.parseInt(productId));
+        if (cart != null) {
+            cartManager.delete(cart );
+        }
+        return SUCCESS;
+    }
+
     public String getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void  setProductId(String productId) {
         this.productId = productId;
     }
 
