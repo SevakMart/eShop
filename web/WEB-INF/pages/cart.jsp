@@ -41,22 +41,26 @@
                         <td class="cart_price">
                             <p>$<s:property value="price"/></p>
                         </td>
-                        <td class="cart_quantity">
-                            <div class="cart_quantity_button">
+                        <form action="checkoutView" method="POST">
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <input id="count_<s:property value="id"/>" class="cart_quantity_input" type="number"
+                                           min="1" name="quantity" value="1"
+                                           autocomplete="off" size="2"
+                                           onchange="increase(<s:property value="price"/>,<s:property value="id"/>)"/>
 
-                                <input id="count_<s:property value="id"/>"  class="cart_quantity_input" type="number" min="1" name="quantity" value="1"
-                                       autocomplete="off" size="2"  onchange="increase(<s:property value="price"/>,<s:property value="id"/>)"/>
-                                <input id="productId" name="productId" type="hidden" value="<s:property value="id"/>">
-                            </div>
-                        </td>
-                        <td class="cart_total">
-                            <input id="total_<s:property value="id"/>" type="text" value="" readonly>
-                        </td>
-                        <td class="cart_delete">
-
-
-                            <button class=cart_quantity_delete"  onclick="sendOrder(<s:property value="id"/>)">Order</button>
-                            <a class="cart_quantity_delete" href="deleteCart.action?productId=<s:property value="id"/> "><i class="fa fa-times"></i></a>
+                                    <input id="productId" name="productId" type="hidden"
+                                           value="<s:property value="id"/>">
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <input id="total_<s:property value="id"/>" type="text" value="" readonly>
+                                <button type="submit">Order</button>
+                            </td>
+                        </form>
+                        <td class="cart_delete" style="margin-left: 15px">
+                            <a class="cart_quantity_delete"
+                               href="deleteCart.action?productId=<s:property value="id"/> "><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                 </s:iterator>
@@ -67,27 +71,12 @@
 </section>
 <script>
 
-    function increase(price,id) {
+    function increase(price, id) {
 
-        var count = $("#count_"+id).val();
-        var sum= price*count;
-        $("#total_"+id).val('$'+sum);
+        var count = $("#count_" + id).val();
+        var sum = price * count;
+        $("#total_" + id).val('$' + sum);
     }
-    
-    function sendOrder(id) {
-        var count = $("#count_"+id).val();
-        var sendInfo = {
-            quantity:count,
-            productId: id
-        };
-        $.ajax({
-            url: "checkoutView.action",
-            method: "post",
-            data: sendInfo,
-            success: function (answer) {
-                console.log(answer)
-            }
-        })}
 </script>
 <!--/#cart_items-->
 
@@ -168,3 +157,4 @@
         </div>
     </div>
 </section>
+<!--/#do_action-->
