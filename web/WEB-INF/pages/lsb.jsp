@@ -12,50 +12,21 @@
     <div class="left-sidebar">
         <h2>Category</h2>
 
-        <%--<div class="panel-group category-products" id="accordian"><!--category-productsr-->--%>
-            <%--<s:iterator value="#application.categories">--%>
-                <%--<div class="panel panel-default">--%>
+        <s:iterator value="#application.categories">
+            <button class="accordion"><s:property value="key.name"/></button>
+            <div class="panel">
 
-                    <%--<div class="panel-heading">--%>
-                        <%--<h4 class="panel-title">--%>
-                                <%--&lt;%&ndash;<a data-toggle="collapse" data-parent="#accordian"&ndash;%&gt;--%>
-                            <%--<a href="productsById.action?categoryId=<s:property value="key.id"/>">--%>
-                                    <%--&lt;%&ndash;<span class="badge pull-right"><i class="fa fa-plus"></i></span>&ndash;%&gt;--%>
-                                <%--<s:property value="key.name"/>--%>
-                            <%--</a>--%>
-                        <%--</h4>--%>
-                    <%--</div>--%>
-                    <%--<s:if test="%{value!=null }">--%>
-                        <%--<div id="subCategories" class="panel-collapse collapse" style="display: none" onclick="">--%>
-                            <%--<div class="panel-body">--%>
-                                <%--<ul>--%>
-                                    <%--<s:iterator value="value">--%>
-                                        <%--<li>--%>
-                                            <%--<a href="productsById.action?categoryId=<s:property value="id"/>"><s:property--%>
-                                                    <%--value="name"/> </a>--%>
-                                        <%--</li>--%>
-                                    <%--</s:iterator>--%>
-                                <%--</ul>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</s:if>--%>
-                <%--</div>--%>
-            <%--</s:iterator>--%>
-        <%--</div><!--/category-products-->--%>
-<s:iterator value="#application.categories">
-        <button class="accordion"><s:property value="key.name" /></button>
-        <div class="panel">
+                <ul>
+                    <s:iterator value="value">
+                        <li>
+                            <a href="productsById.action?categoryId=<s:property value="id"/>"><s:property
+                                    value="name"/> </a>
+                        </li>
+                    </s:iterator>
+                </ul>
 
-            <ul>
-                <s:iterator value="value">
-                    <li>
-                        <a href="productsById.action?categoryId=<s:property value="id"/>"><s:property value="name"/> </a>
-                    </li>
-                </s:iterator>
-            </ul>
-
-        </div>
-</s:iterator>
+            </div>
+        </s:iterator>
         <style>button.accordion {
             background-color: #eee;
             color: #444;
@@ -68,22 +39,9 @@
             transition: 0.4s;
         }
 
-
         button.accordion.active, button.accordion:hover {
             background-color: #ddd;
         }
-
-
-        /*div.panel {*/
-            /*padding: 0 18px;*/
-            /*background-color: white;*/
-            /*display: none;*/
-        /*}*/
-
-        /*div.panel.show {*/
-            /*display: block;*/
-        /*}*/
-
 
         div.panel {
             padding: 0 18px;
@@ -99,8 +57,7 @@
             max-height: 500px; /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
         }
 
-
-            /*icons*/
+        /*icons*/
 
         button.accordion:after {
             content: '\02795'; /* Unicode character for "plus" sign (+) */
@@ -120,7 +77,7 @@
             var i;
 
             for (i = 0; i < acc.length; i++) {
-                acc[i].onclick = function(){
+                acc[i].onclick = function () {
                     this.classList.toggle("active");
                     this.nextElementSibling.classList.toggle("show");
                 }
@@ -155,9 +112,3 @@
 
     </div>
 </div>
-
-<script>
-   function subCategories() {
-      $("#subCategories").show();
-   }
-</script>

@@ -23,7 +23,7 @@ public class CartManager implements ICartManager {
 
     @Override
     public Cart getEntityByID(int id) {
-        return null;
+        return cartDAO.getEntityByID(id);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class CartManager implements ICartManager {
 
     @Override
     public void delete(Cart entity) {
-
+        cartDAO.delete(entity);
     }
 
     @Override

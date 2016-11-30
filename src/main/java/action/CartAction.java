@@ -38,10 +38,12 @@ public class CartAction extends BaseAction {
 
     public String deleteFromCart() {
         Cart cart = cartManager.getEntityByID(Integer.parseInt(productId));
+
         if (cart != null) {
             cartManager.delete(cart );
+            return SUCCESS;
         }
-        return SUCCESS;
+        return ERROR;
     }
 
     public String getProductId() {
