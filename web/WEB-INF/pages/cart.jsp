@@ -42,6 +42,7 @@
                             <p>$<s:property value="price"/></p>
                         </td>
                         <form action="checkoutView" method="POST">
+                            <%--just comment--%>
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
                                     <input id="count_<s:property value="id"/>" class="cart_quantity_input" type="number"
