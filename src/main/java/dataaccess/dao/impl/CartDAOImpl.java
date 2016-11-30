@@ -24,7 +24,7 @@ public class CartDAOImpl implements ICartDAO {
 
     @Override
     public Cart getEntityByID(int id) {
-        return null;
+        return (Cart) session.get(Cart.class,id);
     }
 
     @Override
@@ -39,11 +39,13 @@ public class CartDAOImpl implements ICartDAO {
 
     @Override
     public void delete(Cart entity) {
-
+        session.beginTransaction();
+        session.delete(entity);
+        session.getTransaction().commit();
     }
 
     @Override
     public List<Cart> getProductsFromCart(int id) {
-        return session.createCriteria(Cart.class).add(Restrictions.eq("user_id",id)).list();
+        return session.createCriteria(Cart.class).add(Restrictions.eq("user_id", id)).list();
     }
 }
