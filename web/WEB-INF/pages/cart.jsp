@@ -77,23 +77,6 @@
         var sum = price * count;
         $("#total_" + id).val('$' + sum);
     }
-
-    function sendOrder(id) {
-        var count = $("#count_" + id).val();
-        var sendInfo = {
-            quantity: count,
-            productId: id
-        };
-        $.ajax({
-            url: "checkoutView.action",
-            method: "post",
-            data: sendInfo,
-
-            success: function (answer) {
-
-            }
-        })
-    }
 </script>
 <!--/#cart_items-->
 
