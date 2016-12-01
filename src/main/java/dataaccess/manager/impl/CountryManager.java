@@ -19,7 +19,7 @@ public class CountryManager implements ICountryManager {
 
     @Override
     public Country getEntityByID(int id) {
-        return null;
+        return countryDAO.getEntityByID(id);
     }
 
     @Override

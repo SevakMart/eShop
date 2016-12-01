@@ -20,7 +20,7 @@ public class CountryDAOImpl implements ICountryDAO {
 
     @Override
     public Country getEntityByID(int id) {
-        return null;
+        return (Country) session.get(Country.class, id);
     }
 
     @Override

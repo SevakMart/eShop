@@ -10,10 +10,10 @@ import java.util.List;
 /**
  * Created by levon on 11/29/16.
  */
-public class ChechkoutManager implements ICheckoutManager {
+public class CheckoutManager implements ICheckoutManager {
     private ICheckoutDAO checkoutDAO;
 
-    public ChechkoutManager(){
+    public CheckoutManager(){
         checkoutDAO= new CheckoutDAOImpl();
 
     }

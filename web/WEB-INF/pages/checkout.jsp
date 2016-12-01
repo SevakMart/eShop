@@ -16,53 +16,17 @@
             </ol>
         </div><!--/breadcrums-->
 
-        <%--<div class="step-one">--%>
-            <%--<h2 class="heading">Step1</h2>--%>
-        <%--</div>--%>
-        <%--<div class="checkout-options">--%>
-            <%--<h3>New User</h3>--%>
-            <%--<p>Checkout options</p>--%>
-            <%--<ul class="nav">--%>
-                <%--<li>--%>
-                    <%--<label><input type="checkbox"> Register Account</label>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<label><input type="checkbox"> Guest Checkout</label>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<a href=""><i class="fa fa-times"></i>Cancel</a>--%>
-                <%--</li>--%>
-            <%--</ul>--%>
-        <%--</div><!--/checkout-options-->--%>
-
-        <%--<div class="register-req">--%>
-            <%--<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>--%>
-        <%--</div><!--/register-req-->--%>
-
         <div class="shopper-informations">
             <div class="row">
-                <%--<div class="col-sm-3">--%>
-                    <%--<div class="shopper-info">--%>
-                        <%--<p>Shopper Information</p>--%>
-                        <%--<form>--%>
-                            <%--<input type="text" placeholder="Display Name">--%>
-                            <%--<input type="text" placeholder="User Name">--%>
-                            <%--<input type="password" placeholder="Password">--%>
-                            <%--<input type="password" placeholder="Confirm password">--%>
-                        <%--</form>--%>
-                        <%--<a class="btn btn-primary" href="">Get Quotes</a>--%>
-                        <%--<a class="btn btn-primary" href="">Continue</a>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
                 <div class="col-sm-12 clearfix">
                     <div class="bill-to">
                         <p>Bill To</p>
                         <div class="form-one">
                             <form action="checkout.action" method="post">
-                                <input type="text" name="email" placeholder="Email*">
+                                <input type="email" name="email" placeholder="Email*">
                                 <input type="text" name="firstName" placeholder="First Name *">
                                 <input type="text" name="lastName" placeholder="Last Name *">
-                                <input type="text" name="address" placeholder="Address 1 *">
+                                <input type="text" name="address" placeholder="Address *">
                                 <input type="text" name="zipCode" placeholder="Zip / Postal Code *">
                                 <select name="countryId">
                                     <s:iterator value="#application.countries" var="country">
@@ -81,12 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <%--<div class="col-sm-4">--%>
-                    <%--<div class="order-message">--%>
-                        <%--<p>Shipping Order</p>--%>
-                       <%----%>
-                    <%--</div>--%>
-                <%--</div>--%>
+
             </div>
         </div>
         <div class="review-payment">

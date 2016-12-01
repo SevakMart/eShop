@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by levon on 11/28/16.
  */
 @Entity
-@Table(name = "order")
+@Table(name = "checkout")
 public class Checkout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,21 +19,21 @@ public class Checkout {
 
     @ManyToOne
 
-    private Products products;
+    private Products product;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "first_name")
+    @Column(name = "name")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "surname")
     private String lastName;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "zip_code")
+    @Column(name = "zipcode")
     private String zipCode;
 
     @ManyToOne
@@ -46,7 +46,7 @@ public class Checkout {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "mobile_phone")
+    @Column(name = "mobile")
     private String mobilePhone;
 
     @Column(name = "message")
@@ -69,12 +69,12 @@ public class Checkout {
         this.user = user;
     }
 
-    public Products getProducts() {
-        return products;
+    public Products getProduct() {
+        return product;
     }
 
-    public void setProducts(Products products) {
-        this.products = products;
+    public void setProduct(Products products) {
+        this.product = products;
     }
 
     public String getEmail() {

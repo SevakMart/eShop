@@ -1,15 +1,12 @@
 package action;
 
-import dataaccess.dao.impl.CheckoutDAOImpl;
-import dataaccess.dao.impl.CountryDAOImpl;
 import dataaccess.manager.ICheckoutManager;
 import dataaccess.manager.ICountryManager;
 import dataaccess.manager.IProductsManager;
-import dataaccess.manager.impl.ChechkoutManager;
+import dataaccess.manager.impl.CheckoutManager;
 import dataaccess.manager.impl.CountryManager;
 import dataaccess.manager.impl.ProductsManager;
 import model.Checkout;
-import model.Products;
 import model.User;
 
 /**
@@ -36,10 +33,10 @@ public class CheckOutAction extends BaseAction {
     public String execute() throws Exception {
         Checkout checkout = new Checkout();
         IProductsManager productsManager= new ProductsManager();
-        ICheckoutManager checkoutManager= new ChechkoutManager();
+        ICheckoutManager checkoutManager= new CheckoutManager();
         ICountryManager countryManager= new CountryManager();
         checkout.setUser((User) session.get("user"));
-        checkout.setProducts(productsManager.getEntityByID(Integer.parseInt(productId)));
+        checkout.setProduct(productsManager.getEntityByID(Integer.parseInt(productId)));
         checkout.setEmail(email);
         checkout.setFirstName(firstName);
         checkout.setLastName(lastName);
