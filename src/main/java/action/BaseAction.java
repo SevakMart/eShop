@@ -8,6 +8,7 @@ import dataaccess.manager.impl.CountryManager;
 import model.Brand;
 import model.Category;
 import model.Country;
+import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.util.ServletContextAware;
 
@@ -17,11 +18,12 @@ import java.util.List;
 import java.util.Map;
 
 
-public class BaseAction extends ActionSupport implements SessionAware, ServletContextAware {
+public class BaseAction extends ActionSupport implements SessionAware, ServletContextAware, ApplicationAware {
     Map<String, Object> session;
-   private CategoryManager categoryManager;
-   private BrandManager brandManager;
-   private CountryManager countryManager;
+    Map<String, Object> application;
+    private CategoryManager categoryManager;
+    private BrandManager brandManager;
+    private CountryManager countryManager;
 
     public BaseAction() {
         categoryManager = new CategoryManager();
@@ -47,4 +49,8 @@ public class BaseAction extends ActionSupport implements SessionAware, ServletCo
         servletContext.setAttribute("countries", countries);
     }
 
+    @Override
+    public void setApplication(Map<String, Object> map) {
+        application = map;
+    }
 }

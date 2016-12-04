@@ -16,23 +16,29 @@ public class CategoryDAOImpl implements ICategoryDAO {
     Session session = HibernateUtil.getSessionFactory().openSession();
 
     public void create(Category category) {
-
+        session.beginTransaction();
+        session.save(category);
+        session.getTransaction().commit();
     }
 
     public Category getEntityByID(int id) {
-        return null;
+        return (Category) session.get(Category.class, id);
     }
 
     public List<Category> getAll() {
-        return null;
+        return session.createCriteria(Category.class).list();
     }
 
     public void update(Category entity) {
-
+        session.beginTransaction();
+        session.update(entity);
+        session.getTransaction().commit();
     }
 
     public void delete(Category entity) {
-
+        session.beginTransaction();
+        session.delete(entity);
+        session.getTransaction().commit();
     }
 
     public List<Category> getCategoriesByParentId(int id) {

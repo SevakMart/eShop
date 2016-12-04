@@ -28,6 +28,10 @@
             <result name="error">/WEB-INF/pages/error.jsp</result>
         </global-results>
 
+        <action name="admin" class="action.AdminAction">
+            <result name="success">/WEB-INF/pages/admin.jsp</result>
+        </action>
+
         <action name="home" class="action.HomeAction">
             <result name="success" type="tiles">home.view</result>
         </action>
@@ -118,7 +122,23 @@
         <action name="sendEmail" class="action.ContactAction" method="sendEmail">
             <result name="success" type="tiles">contact.view</result>
         </action>
+        <!--category action-->
+        <action name="addCategory" class="action.CategoryAction" method="addCategory">
+            <result name="success" type="redirect">admin.action</result>
+            <result name="input">/WEB-INF/pages/admin.jsp</result>
+        </action>
 
+        <action name="deleteCategory" class="action.CategoryAction" method="delete">
+            <result name="success" type="redirect">admin.action</result>
+        </action>
+
+        <action name="viewCategory" class="action.CategoryAction" method="view">
+            <result name="success">/WEB-INF/pages/admin.jsp</result>
+        </action>
+
+        <action name="updateCategory" class="action.CategoryAction" method="update">
+            <result name="success" type="redirect">admin.action</result>
+        </action>
 
     </package>
 

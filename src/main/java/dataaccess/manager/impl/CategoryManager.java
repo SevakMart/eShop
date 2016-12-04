@@ -17,23 +17,23 @@ public class CategoryManager implements ICategoryManager {
     }
 
     public void create(Category category) {
-
+        categoryDAO.create(category);
     }
 
     public Category getEntityByID(int id) {
-        return null;
+        return categoryDAO.getEntityByID(id);
     }
 
     public List<Category> getAll() {
-        return null;
+        return categoryDAO.getAll();
     }
 
     public void update(Category entity) {
-
+        categoryDAO.update(entity);
     }
 
     public void delete(Category entity) {
-
+        categoryDAO.delete(entity);
     }
 
     //return all categories with his sub categories
@@ -41,7 +41,6 @@ public class CategoryManager implements ICategoryManager {
         int mainParentId = 0;
 
         Map<Category, List<Category>> allCategories = new HashMap<>();
-
 
 
         List<Category> mainCategories = categoryDAO.getCategoriesByParentId(mainParentId);
