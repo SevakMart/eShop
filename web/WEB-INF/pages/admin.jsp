@@ -67,9 +67,9 @@
                 <s:select list="%{#application.brands}" name="brandId"
                           headerValue="-----" headerKey="0" label="Brand"
                           listKey="id" listValue="name"/>
-                <s:select list="allCategories" label="Categories" name="categoryId"
-                          headerKey="0" headerValue="-----"
-                          listKey="id" listValue="name"/>
+                <s:select list="%{#application.categories}" label="Categories" name="categoryId"
+                headerKey="0" headerValue="-----"
+                listKey="key.id" listValue="key.name"/>
                 <s:file label="main picture" name="main"/>
                 <%--<s:file label="pictures" name="pictures" multiple="multiple"/>--%>
                 <s:submit value="Add Product"/>
@@ -77,13 +77,23 @@
         </div>
     </div>
     <div id="brandDiv" style="width: 30%;float: left">
-        <div id="addBrand">
-            <h4>add brand</h4>
+        <s:if test="%{brand==null }">
+            <div id="addBrand">
+                <h4>add brand</h4>
+                <s:form action="addBrand" method="POST">
+                    <s:textfield label="Brand name" name="name"/>
+                    <s:submit value="Add Brand"/>
+                </s:form>
+            </div>
+        </s:if>
+        <s:else>
+            <h4>update brand</h4>
             <s:form action="addBrand" method="POST">
-                <s:textfield label="Brand name" name="name"/>
+                <s:hidden name="brandId" value="%{brand.id}"/>
+                <s:textfield label="Brand name" name="name" value="%{brand.name}"/>
                 <s:submit value="Add Brand"/>
             </s:form>
-        </div>
+        </s:else>
         <div id="brandsList">
             <table border="solid">
                 <tr>
@@ -92,11 +102,10 @@
                     <th width="50">delete</th>
                 </tr>
                 <s:iterator value="#application.brands">
-
                     <tr>
                         <td width="100"><s:property value="name"/></td>
-                        <td width="50">edit</td>
-                        <td width="50">delete</td>
+                        <td width="50"><a href="viewBrand.action?brandId=<s:property value="id"/> ">edit</a></td>
+                        <td width="50"><a href="deleteBrand.action?brandId=<s:property value="id"/> ">delete</a></td>
                     </tr>
                 </s:iterator>
             </table>

@@ -23,7 +23,7 @@ public class BrandManager implements IBrandManager {
     }
 
     public Brand getEntityByID(int id) {
-        return null;
+        return brandDAO.getEntityByID(id);
     }
 
     public List<Brand> getAll() {
@@ -31,7 +31,7 @@ public class BrandManager implements IBrandManager {
     }
 
     public void update(Brand entity) {
-
+        brandDAO.update(entity);
     }
 
     public void delete(Brand entity) {

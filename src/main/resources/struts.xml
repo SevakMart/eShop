@@ -106,6 +106,18 @@
             <result name="success" type="redirect">admin.action</result>
         </action>
 
+        <action name="deleteBrand" class="action.BrandAction" method="delete">
+            <result name="success" type="redirect">admin.action</result>
+        </action>
+
+        <action name="viewBrand" class="action.BrandAction" method="view">
+            <result name="success">/WEB-INF/pages/admin.jsp</result>
+        </action>
+
+        <action name="updateBrand" class="action.BrandAction" method="update">
+            <result name="success" type="redirect">admin.action</result>
+        </action>
+
         <!--wish list actions-->
 
         <action name="addToWhishList" class="action.WishListAction" method="addToWishList">

@@ -21,7 +21,7 @@ public class BrandDAOImpl implements IBrandDAO {
     }
 
     public Brand getEntityByID(int id) {
-        return null;
+        return (Brand) session.get(Brand.class, id);
     }
 
     public List<Brand> getAll() {
@@ -29,10 +29,14 @@ public class BrandDAOImpl implements IBrandDAO {
     }
 
     public void update(Brand entity) {
-
+        session.beginTransaction();
+        session.update(entity);
+        session.getTransaction().commit();
     }
 
     public void delete(Brand entity) {
-
+        session.beginTransaction();
+        session.delete(entity);
+        session.getTransaction().commit();
     }
 }
