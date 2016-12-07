@@ -11,9 +11,9 @@
 <head>
     <title>Admin page</title>
 </head>
-<body>
-<div id="mainDiv">
-    <div id="categoryDiv">
+<body style="margin: 0 auto">
+<div id="mainDiv" style="width: 1200px;margin: 0 auto; padding: 1%">
+    <div id="categoryDiv" style="width: 30%;float: left;border: 1px">
         <s:if test="%{category==null }">
             <div id="addCategory">
                 <h4>Add category</h4>
@@ -57,7 +57,7 @@
             </table>
         </div>
     </div>
-    <div id="productDiv" style="float: left">
+    <div id="productDiv" style="float: left; width: 30%">
         <div id="addProduct" style="float: left">
             <h4>Add product</h4>
             <s:form action="addProduct" method="POST" enctype="multipart/form-data">
@@ -74,6 +74,32 @@
                 <%--<s:file label="pictures" name="pictures" multiple="multiple"/>--%>
                 <s:submit value="Add Product"/>
             </s:form>
+        </div>
+    </div>
+    <div id="brandDiv" style="width: 30%;float: left">
+        <div id="addBrand">
+            <h4>add brand</h4>
+            <s:form action="addBrand" method="POST">
+                <s:textfield label="Brand name" name="name"/>
+                <s:submit value="Add Brand"/>
+            </s:form>
+        </div>
+        <div id="brandsList">
+            <table border="solid">
+                <tr>
+                    <th width="100">name</th>
+                    <th width="50">edit</th>
+                    <th width="50">delete</th>
+                </tr>
+                <s:iterator value="#application.brands">
+
+                    <tr>
+                        <td width="100"><s:property value="name"/></td>
+                        <td width="50">edit</td>
+                        <td width="50">delete</td>
+                    </tr>
+                </s:iterator>
+            </table>
         </div>
     </div>
 </div>

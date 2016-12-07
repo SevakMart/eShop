@@ -15,7 +15,9 @@ public class BrandDAOImpl implements IBrandDAO {
     Session session = HibernateUtil.getSessionFactory().openSession();
 
     public void create(Brand brand) {
-
+        session.beginTransaction();
+        session.save(brand);
+        session.getTransaction().commit();
     }
 
     public Brand getEntityByID(int id) {

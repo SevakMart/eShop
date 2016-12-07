@@ -19,7 +19,7 @@ public class BrandManager implements IBrandManager {
 
 
     public void create(Brand brand) {
-
+        brandDAO.create(brand);
     }
 
     public Brand getEntityByID(int id) {

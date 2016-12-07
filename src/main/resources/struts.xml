@@ -101,7 +101,10 @@
         <action name="logout" class="action.LogoutAction">
             <result name="success" type="redirect">home.action</result>
         </action>
-
+        <!--brand actions-->
+        <action name="addBrand" class="action.BrandAction" method="addBrand">
+            <result name="success" type="redirect">admin.action</result>
+        </action>
 
         <!--wish list actions-->
 
