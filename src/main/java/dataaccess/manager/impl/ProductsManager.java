@@ -15,7 +15,7 @@ public class ProductsManager implements IProductsManager {
     }
 
     public void create(Products products) {
-
+        productsDAO.create(products);
     }
 
     public Products getEntityByID(int id) {
@@ -35,7 +35,7 @@ public class ProductsManager implements IProductsManager {
     }
 
     public List<Products> getProductByCatId(int id) {
-       return productsDAO.getProductByCatId(id);
+        return productsDAO.getProductByCatId(id);
     }
 
     @Override

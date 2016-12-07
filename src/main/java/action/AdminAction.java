@@ -4,17 +4,21 @@ import dataaccess.manager.impl.CategoryManager;
 import model.Category;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by forjava on 12/4/2016.
  */
 public class AdminAction extends BaseAction {
     private List<Category> allCategories;
+    private Map<Category, List<Category>> categories;
     CategoryManager categoryManager = new CategoryManager();
+
     @Override
 
     public String execute() throws Exception {
-        allCategories= categoryManager.getAll();
+        categories = categoryManager.getCategories();
+        allCategories = categoryManager.getAll();
         return SUCCESS;
     }
 
@@ -24,5 +28,13 @@ public class AdminAction extends BaseAction {
 
     public void setAllCategories(List<Category> allCategories) {
         this.allCategories = allCategories;
+    }
+
+    public Map<Category, List<Category>> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Map<Category, List<Category>> categories) {
+        this.categories = categories;
     }
 }

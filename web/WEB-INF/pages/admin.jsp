@@ -47,14 +47,33 @@
                     <th width="60">Delete category</th>
                     <th width="60">Update category</th>
                 </tr>
-                <s:iterator value="allCategories">
+                <s:iterator value="#application.categories">
                     <tr>
-                        <th width="120"><s:property value="name"/></th>
-                        <th width="60"><a href="deleteCategory.action?id=<s:property value="id"/>">delete</a></th>
-                        <th width="60"><a href="viewCategory.action?id=<s:property value="id"/>">edit</a></th>
+                        <th width="120"><s:property value="key.name"/></th>
+                        <th width="60"><a href="deleteCategory.action?id=<s:property value="key.id"/>">delete</a></th>
+                        <th width="60"><a href="viewCategory.action?id=<s:property value="key.id"/>">edit</a></th>
                     </tr>
                 </s:iterator>
             </table>
+        </div>
+    </div>
+    <div id="productDiv" style="float: left">
+        <div id="addProduct" style="float: left">
+            <h4>Add product</h4>
+            <s:form action="addProduct" method="POST" enctype="multipart/form-data">
+                <s:textfield name="name" label="Product`s name"/>
+                <s:textfield name="price" label="Price"/>
+                <s:textarea name="description" label="Product`s name" rows="5"/>
+                <s:select list="%{#application.brands}" name="brandId"
+                          headerValue="-----" headerKey="0" label="Brand"
+                          listKey="id" listValue="name"/>
+                <s:select list="allCategories" label="Categories" name="categoryId"
+                          headerKey="0" headerValue="-----"
+                          listKey="id" listValue="name"/>
+                <s:file label="main picture" name="main"/>
+                <%--<s:file label="pictures" name="pictures" multiple="multiple"/>--%>
+                <s:submit value="Add Product"/>
+            </s:form>
         </div>
     </div>
 </div>

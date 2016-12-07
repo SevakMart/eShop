@@ -118,9 +118,6 @@ public class Products {
         this.category = category;
     }
 
-
-
-
     public Brand getBrand() {
         return brand;
     }

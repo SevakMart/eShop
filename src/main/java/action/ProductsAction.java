@@ -1,8 +1,13 @@
 package action;
 
 import dataaccess.manager.impl.ProductsManager;
+import model.Brand;
+import model.Category;
 import model.Products;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -11,10 +16,16 @@ public class ProductsAction extends BaseAction {
     private String brandId;
     private String productId;
     private String name;
+    private double price;
+    private String description;
     private Products product;
     private ArrayList<Products> products;
     private ProductsManager productsManager;
     private String categoryId;
+
+    private File main;
+    private String mainContentType;
+    private String mainFileName;
 
     public ProductsAction() {
         productsManager = new ProductsManager();
@@ -49,6 +60,34 @@ public class ProductsAction extends BaseAction {
         products = (ArrayList<Products>) productsManager.searchProductsByName(name);
         return SUCCESS;
 
+    }
+
+    public String addProduct() {
+        String destPath;
+        String imageName;
+        try {
+            destPath = "C:\\Users\\forjava\\IdeaProjects\\eShop\\web\\upload";
+            long currentTime = System.currentTimeMillis();
+            mainFileName = currentTime + "_" + mainFileName;
+            FileUtils.copyFile(main, new File(destPath, mainFileName));
+            imageName = mainFileName;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ERROR;
+        }
+        Products newProduct = new Products();
+        newProduct.setName(name);
+        newProduct.setPrice(price);
+        Brand brand = new Brand();
+        brand.setId(Integer.parseInt(brandId));
+        newProduct.setBrand(brand);
+        Category category = new Category();
+        category.setId(Integer.parseInt(categoryId));
+        newProduct.setCategory(category);
+        newProduct.setDescription(description);
+        newProduct.setPictureUrl(imageName);
+        productsManager.create(newProduct);
+        return SUCCESS;
     }
 
     public ArrayList<Products> getProducts() {
@@ -97,5 +136,45 @@ public class ProductsAction extends BaseAction {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getMainFileName() {
+        return mainFileName;
+    }
+
+    public void setMainFileName(String mainFileName) {
+        this.mainFileName = mainFileName;
+    }
+
+    public String getMainContentType() {
+        return mainContentType;
+    }
+
+    public void setMainContentType(String mainContentType) {
+        this.mainContentType = mainContentType;
+    }
+
+    public File getMain() {
+        return main;
+    }
+
+    public void setMain(File main) {
+        this.main = main;
     }
 }

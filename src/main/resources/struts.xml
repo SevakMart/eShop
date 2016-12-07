@@ -54,6 +54,11 @@
             <result name="success">/WEB-INF/pages/searchResult.jsp</result>
         </action>
 
+        <action name="addProduct" class="action.ProductsAction" method="addProduct">
+            <result name="success" type="redirect">admin.action</result>
+            <result name="input">/WEB-INF/pages/admin.jsp</result>
+        </action>
+
         <!--commons actions-->
         <action name="checkoutView" class="action.CheckOutAction" method="view">
             <result name="success" type="tiles">checkout.view</result>
