@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class BaseAction extends ActionSupport implements SessionAware, ServletContextAware, ApplicationAware {
+public class BaseAction extends ActionSupport implements SessionAware, ApplicationAware {
     Map<String, Object> session;
     Map<String, Object> application;
     private CategoryManager categoryManager;
@@ -39,15 +39,7 @@ public class BaseAction extends ActionSupport implements SessionAware, ServletCo
         session.clear();
     }
 
-    public void setServletContext(ServletContext servletContext) {
-        List<Country> countries = countryManager.getAll();
-        ArrayList<Brand> brands = (ArrayList<Brand>) brandManager.getAll();
-        Map<Category, List<Category>> categories = categoryManager.getCategories();
-        System.out.println(categories);
-        servletContext.setAttribute("categories", categories);
-        servletContext.setAttribute("brands", brands);
-        servletContext.setAttribute("countries", countries);
-    }
+
 
     @Override
     public void setApplication(Map<String, Object> map) {

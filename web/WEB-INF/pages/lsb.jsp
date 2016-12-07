@@ -13,7 +13,8 @@
         <h2>Category</h2>
 
         <s:iterator value="#application.categories">
-            <button class="accordion"><s:property value="key.name"/></button>
+            <div class="accordion"><a href="productsById.action?categoryId=<s:property value="key.id"/> "><s:property
+                    value="key.name"/></a></div>
             <div class="panel">
 
                 <ul>
@@ -27,49 +28,52 @@
 
             </div>
         </s:iterator>
-        <style>button.accordion {
-            background-color: #eee;
-            color: #444;
-            cursor: pointer;
-            padding: 18px;
-            width: 100%;
-            text-align: left;
-            border: none;
-            outline: none;
-            transition: 0.4s;
-        }
+        <style>
 
-        button.accordion.active, button.accordion:hover {
-            background-color: #ddd;
-        }
+            div.accordion {
+                background-color: #eee;
+                color: #444;
+                cursor: pointer;
+                padding: 8px;
+                width: 100%;
+                text-align: left;
+                border: none;
+                outline: none;
+                transition: 0.4s;
+                height: 30px;
+            }
 
-        div.panel {
-            padding: 0 18px;
-            background-color: white;
-            max-height: 0;
-            overflow: hidden;
-            transition: 0.6s ease-in-out;
-            opacity: 0;
-        }
+            div.accordion.active, div.accordion:hover {
+                background-color: #ddd;
+            }
 
-        div.panel.show {
-            opacity: 1;
-            max-height: 500px; /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
-        }
+            div.panel {
+                padding: 0 18px;
+                background-color: white;
+                max-height: 0;
+                overflow: hidden;
+                transition: 0.6s ease-in-out;
+                opacity: 0;
+            }
 
-        /*icons*/
+            div.panel.show {
+                opacity: 1;
+                max-height: 500px; /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
+            }
 
-        button.accordion:after {
-            content: '\02795'; /* Unicode character for "plus" sign (+) */
-            font-size: 13px;
-            color: #777;
-            float: right;
-            margin-left: 5px;
-        }
+            /*icons*/
 
-        button.accordion.active:after {
-            content: "\2796"; /* Unicode character for "minus" sign (-) */
-        }
+            div.accordion:after {
+                content: '\02795'; /* Unicode character for "plus" sign (+) */
+                font-size: 13px;
+                color: #777;
+                float: right;
+                margin-left: 5px;
+            }
+
+            div.accordion.active:after {
+                content: "\2796"; /* Unicode character for "minus" sign (-) */
+            }
         </style>
 
         <script>
