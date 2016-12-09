@@ -3,12 +3,14 @@ package action;
 import dataaccess.manager.impl.ProductsManager;
 import model.Brand;
 import model.Category;
+import model.Image;
 import model.Products;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProductsAction extends BaseAction {
@@ -23,9 +25,9 @@ public class ProductsAction extends BaseAction {
     private ProductsManager productsManager;
     private String categoryId;
 
-    private File main;
-    private String mainContentType;
-    private String mainFileName;
+    private File[] main;
+    private String[] mainContentType;
+    private String[] mainFileName;
 
     public ProductsAction() {
         productsManager = new ProductsManager();
@@ -63,19 +65,27 @@ public class ProductsAction extends BaseAction {
     }
 
     public String addProduct() {
-        String destPath;
-        String imageName;
-        try {
-            destPath = "C:\\Users\\forjava\\IdeaProjects\\eShop\\web\\upload";
-            long currentTime = System.currentTimeMillis();
-            mainFileName = currentTime + "_" + mainFileName;
-            FileUtils.copyFile(main, new File(destPath, mainFileName));
-            imageName = mainFileName;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ERROR;
-        }
         Products newProduct = new Products();
+        final String destPath = "C:\\Users\\forjava\\IdeaProjects\\eShop\\web\\upload";
+        String imageName;
+        List<Image> images = new ArrayList<>();
+        for (int i = 0; i < main.length; i++) {
+            long currentTime = System.currentTimeMillis();
+            File uploadedFile = main[i];
+            String fileName = mainFileName[i];
+            imageName = currentTime+"_"+fileName;
+            try {
+                FileUtils.copyFile(uploadedFile, new File(destPath, imageName));
+            } catch (IOException ex) {
+                System.out.println("Could not copy file " + fileName);
+                ex.printStackTrace();
+            }
+            Image image = new Image();
+            image.setImageName(fileName);
+            image.setPath(imageName);
+            image.setProduct(newProduct);
+            images.add(image);
+        }
         newProduct.setName(name);
         newProduct.setPrice(price);
         Brand brand = new Brand();
@@ -85,7 +95,7 @@ public class ProductsAction extends BaseAction {
         category.setId(Integer.parseInt(categoryId));
         newProduct.setCategory(category);
         newProduct.setDescription(description);
-        newProduct.setPictureUrl(imageName);
+        newProduct.setImageList(images);
         productsManager.create(newProduct);
         return SUCCESS;
     }
@@ -154,27 +164,27 @@ public class ProductsAction extends BaseAction {
         this.description = description;
     }
 
-    public String getMainFileName() {
-        return mainFileName;
-    }
-
-    public void setMainFileName(String mainFileName) {
-        this.mainFileName = mainFileName;
-    }
-
-    public String getMainContentType() {
-        return mainContentType;
-    }
-
-    public void setMainContentType(String mainContentType) {
-        this.mainContentType = mainContentType;
-    }
-
-    public File getMain() {
+    public File[] getMain() {
         return main;
     }
 
-    public void setMain(File main) {
+    public void setMain(File[] main) {
         this.main = main;
+    }
+
+    public String[] getMainContentType() {
+        return mainContentType;
+    }
+
+    public void setMainContentType(String[] mainContentType) {
+        this.mainContentType = mainContentType;
+    }
+
+    public String[] getMainFileName() {
+        return mainFileName;
+    }
+
+    public void setMainFileName(String[] mainFileName) {
+        this.mainFileName = mainFileName;
     }
 }

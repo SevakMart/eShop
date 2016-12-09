@@ -105,8 +105,7 @@
                 <s:select list="%{#application.categories}" label="Categories" name="categoryId"
                           headerKey="0" headerValue="-----"
                           listKey="key.id" listValue="key.name"/>
-                <s:file label="main picture" name="main"/>
-                <%--<s:file label="pictures" name="pictures" multiple="multiple"/>--%>
+                <s:file label="main picture" name="main" multiple="multiple"/>
                 <s:submit value="Add Product"/>
             </s:form>
         </div>
