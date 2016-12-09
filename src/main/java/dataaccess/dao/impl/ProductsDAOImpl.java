@@ -35,7 +35,9 @@ public class ProductsDAOImpl implements IProductDAO {
     }
 
     public void delete(Products entity) {
-
+        session.beginTransaction();
+        session.delete(entity);
+        session.getTransaction().commit();
     }
 
     @Override

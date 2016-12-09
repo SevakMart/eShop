@@ -31,7 +31,7 @@ public class ProductsManager implements IProductsManager {
     }
 
     public void delete(Products entity) {
-
+        productsDAO.delete(entity);
     }
 
     public List<Products> getProductByCatId(int id) {

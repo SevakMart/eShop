@@ -17,8 +17,8 @@ public class AdminAction extends BaseAction {
     @Override
 
     public String execute() throws Exception {
-        categories = categoryManager.getCategories();
-        allCategories = categoryManager.getAll();
+//        categories = categoryManager.getCategories();
+//        allCategories = categoryManager.getAll();
         return SUCCESS;
     }
 

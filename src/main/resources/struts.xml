@@ -42,6 +42,20 @@
         <action name="productsById" class="action.ProductsAction" method="getProductsByCatId">
             <result name="success" type="tiles">products.view</result>
         </action>
+        <action name="productsByIdAdmin" class="action.ProductsAction" method="getProductsByCatId">
+            <result name="success">/WEB-INF/pages/productsResult.jsp</result>
+        </action>
+        <action name="deleteProduct" class="action.ProductsAction" method="delete">
+            <result name="success">/WEB-INF/pages/admin.jsp</result>
+        </action>
+
+        <action name="viewProduct" class="action.ProductsAction" method="view">
+            <result name="success">/WEB-INF/pages/admin.jsp</result>
+        </action>
+
+        <action name="updateProduct" class="action.ProductsAction" method="update">
+            <result name="success">/WEB-INF/pages/admin.jsp</result>
+        </action>
 
         <action name="productDetails" class="action.ProductsAction" method="getProductsDetails">
             <result name="success" type="tiles">productDetails.view</result>

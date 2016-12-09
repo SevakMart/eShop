@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Admin page</title>
+    <script src="js/jquery.js"></script>
 </head>
 <body>
 <div id="mainDiv" style="width: 1200px; padding:5%">
@@ -94,20 +95,40 @@
     </div>
     <div id="productDiv" style="float: left; width: 80%">
         <div id="addProduct" style="float: left; width: 35%">
-            <h4>Add product</h4>
-            <s:form action="addProduct" method="POST" enctype="multipart/form-data">
-                <s:textfield name="name" label="Product`s name"/>
-                <s:textfield name="price" label="Price"/>
-                <s:textarea name="description" label="Product`s name" rows="5"/>
-                <s:select list="%{#application.brands}" name="brandId"
-                          headerValue="-----" headerKey="0" label="Brand"
-                          listKey="id" listValue="name"/>
-                <s:select list="%{#application.categories}" label="Categories" name="categoryId"
-                          headerKey="0" headerValue="-----"
-                          listKey="key.id" listValue="key.name"/>
-                <s:file label="main picture" name="main" multiple="multiple"/>
-                <s:submit value="Add Product"/>
-            </s:form>
+            <s:if test="%{product==null }">
+                <h4>Add product</h4>
+                <s:form action="addProduct" method="POST" enctype="multipart/form-data">
+                    <s:textfield name="name" label="Product`s name"/>
+                    <s:textfield name="price" label="Price"/>
+                    <s:textarea name="description" label="Product`s descrption" rows="5"/>
+                    <s:select list="%{#application.brands}" name="brandId"
+                              headerValue="-----" headerKey="0" label="Brand"
+                              listKey="id" listValue="name"/>
+                    <s:select list="%{#application.categories}" label="Categories" name="categoryId"
+                              headerKey="0" headerValue="-----"
+                              listKey="key.id" listValue="key.name"/>
+                    <s:file label="main picture" name="main" multiple="multiple"/>
+                    <s:submit value="Add Product"/>
+                </s:form>
+            </s:if>
+            <s:else>
+                <h4>Update product</h4>
+                <s:form action="addProduct" method="POST" enctype="multipart/form-data">
+                    <s:hidden name="productId" value="%{product.id}"/>
+                    <s:textfield name="name" label="Product`s name" value="%{product.name}"/>
+                    <s:textfield name="price" label="Price" value="%{product.price}"/>
+                    <s:textarea name="description" label="Product`s description" rows="5"
+                                value="%{product.description}"/>
+                    <s:select list="%{#application.brands}" name="brandId"
+                              headerValue="-----" headerKey="0" label="Brand"
+                              listKey="id" listValue="name"/>
+                    <s:select list="%{#application.categories}" label="Categories" name="categoryId"
+                              headerKey="0" headerValue="-----"
+                              listKey="key.id" listValue="key.name"/>
+                    <s:file label="main picture" name="main" multiple="multiple"/>
+                    <s:submit value="Add Product"/>
+                </s:form>
+            </s:else>
         </div>
         <div id="categoryListDiv" style="float: left; width: 35%">
             <h4>Categories list</h4>
@@ -119,9 +140,8 @@
 
                     <ul>
                         <s:iterator value="value">
-                            <li>
-                                <a href="productsById.action?categoryId=<s:property value="id"/>"><s:property
-                                        value="name"/> </a>
+                            <li onclick="getProducts(<s:property value="id"/>)">
+                                <s:property value="name"/>
                             </li>
                         </s:iterator>
                     </ul>
@@ -187,15 +207,23 @@
                     }
                 }
             </script>
+            <script>
+                function getProducts(id) {
+                    $.ajax({
+                        url: "productsByIdAdmin.action?categoryId=" + id,
+                        success: function (result) {
+                            $("#productsList").html(result)
+
+                        },
+                        error: function () {
+                            $("#productsList").html("error")
+                        }
+                    })
+                }
+            </script>
         </div>
-        <div id="searchDiv">
-            <h4>Advanced search</h4>
-            <s:form action="" method="GET">
-                <s:textfield label="Product name" name="name"/>
-                <s:textfield label="Product category" name="category"/>
-                <s:textfield label="brand name" name="brand"/>
-                <s:submit value="search"/>
-            </s:form>
+        <div id="productsList" style="float: left; width: 30%">
+
         </div>
     </div>
 

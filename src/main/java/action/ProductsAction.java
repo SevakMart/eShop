@@ -73,7 +73,7 @@ public class ProductsAction extends BaseAction {
             long currentTime = System.currentTimeMillis();
             File uploadedFile = main[i];
             String fileName = mainFileName[i];
-            imageName = currentTime+"_"+fileName;
+            imageName = currentTime + "_" + fileName;
             try {
                 FileUtils.copyFile(uploadedFile, new File(destPath, imageName));
             } catch (IOException ex) {
@@ -97,6 +97,25 @@ public class ProductsAction extends BaseAction {
         newProduct.setDescription(description);
         newProduct.setImageList(images);
         productsManager.create(newProduct);
+        return SUCCESS;
+    }
+
+    public String delete() {
+        product = productsManager.getEntityByID(Integer.parseInt(productId));
+        if (product != null) {
+            productsManager.delete(product);
+            return SUCCESS;
+        }
+        return ERROR;
+    }
+
+    public String view() {
+        product = productsManager.getEntityByID(Integer.parseInt(productId));
+        if (product != null) return SUCCESS;
+        return ERROR;
+    }
+
+    public String update() {
         return SUCCESS;
     }
 
