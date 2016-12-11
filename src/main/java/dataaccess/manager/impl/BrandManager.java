@@ -35,6 +35,6 @@ public class BrandManager implements IBrandManager {
     }
 
     public void delete(Brand entity) {
-
+brandDAO.delete(entity);
     }
 }

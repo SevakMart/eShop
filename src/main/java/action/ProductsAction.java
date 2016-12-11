@@ -1,5 +1,6 @@
 package action;
 
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import dataaccess.manager.impl.ProductsManager;
 import model.Brand;
 import model.Category;
@@ -64,8 +65,7 @@ public class ProductsAction extends BaseAction {
 
     }
 
-    public String addProduct() {
-        Products newProduct = new Products();
+    private List<Image> fileupload(Products product) {
         final String destPath = "C:\\Users\\forjava\\IdeaProjects\\eShop\\web\\upload";
         String imageName;
         List<Image> images = new ArrayList<>();
@@ -83,9 +83,15 @@ public class ProductsAction extends BaseAction {
             Image image = new Image();
             image.setImageName(fileName);
             image.setPath(imageName);
-            image.setProduct(newProduct);
+            image.setProduct(product);
             images.add(image);
         }
+        return images;
+    }
+
+    public String addProduct() {
+        Products newProduct = new Products();
+        List<Image> images = fileupload(newProduct);
         newProduct.setName(name);
         newProduct.setPrice(price);
         Brand brand = new Brand();

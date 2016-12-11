@@ -1,17 +1,17 @@
 package action;
 
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import dataaccess.manager.impl.CategoryManager;
 import model.Category;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by forjava on 12/4/2016.
- */
+
 public class CategoryAction extends BaseAction {
     private int id;
-    private String name;
+    private String categoryName;
     private int parentId;
     private Category category;
     Map<Category, List<Category>> categories;
@@ -21,7 +21,7 @@ public class CategoryAction extends BaseAction {
 
     public String addCategory() {
         category = new Category();
-        category.setName(name);
+        category.setName(categoryName);
         category.setParent_id(parentId);
         categoryManager.create(category);
         categories = categoryManager.getCategories();
@@ -29,10 +29,13 @@ public class CategoryAction extends BaseAction {
         return SUCCESS;
     }
 
+    @SkipValidation
     public String delete() {
         category = categoryManager.getEntityByID(id);
         if (category != null) {
             categoryManager.delete(category);
+            categories = categoryManager.getCategories();
+            application.put("categories", categories);
             return SUCCESS;
         }
         return INPUT;
@@ -49,7 +52,7 @@ public class CategoryAction extends BaseAction {
     public String update() {
         category = categoryManager.getEntityByID(id);
         if (category != null) {
-            category.setName(name);
+            category.setName(categoryName);
             category.setParent_id(parentId);
             categoryManager.update(category);
             return SUCCESS;
@@ -66,12 +69,12 @@ public class CategoryAction extends BaseAction {
         this.parentId = parentId;
     }
 
-    public String getName() {
-        return name;
+    public String getCategoryName() {
+        return categoryName;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    @RequiredStringValidator(message = "please input category name")
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public int getId() {

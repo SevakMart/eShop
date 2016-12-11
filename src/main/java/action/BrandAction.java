@@ -1,7 +1,10 @@
 package action;
 
+
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import dataaccess.manager.impl.BrandManager;
 import model.Brand;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import java.util.List;
 
@@ -11,29 +14,33 @@ import java.util.List;
 public class BrandAction extends BaseAction {
 
     private String brandId;
-    private String name;
+    private String brandName;
     BrandManager brandManager = new BrandManager();
     private List<Brand> brands;
     private Brand brand;
 
     public String addBrand() {
         brand = new Brand();
-        brand.setName(name);
+        brand.setName(brandName);
         brandManager.create(brand);
         brands = brandManager.getAll();
         application.put("brands", brands);
         return SUCCESS;
     }
 
+    @SkipValidation
     public String delete() {
         brand = brandManager.getEntityByID(Integer.parseInt(brandId));
         if (brand != null) {
             brandManager.delete(brand);
+            brands = brandManager.getAll();
+            application.put("brands", brands);
             return SUCCESS;
         }
         return ERROR;
     }
 
+    @SkipValidation
     public String view() {
         brand = brandManager.getEntityByID(Integer.parseInt(brandId));
         if (brand != null) {
@@ -45,7 +52,7 @@ public class BrandAction extends BaseAction {
     public String update() {
         brand = brandManager.getEntityByID(Integer.parseInt(brandId));
         if (brand != null) {
-            brand.setName(name);
+            brand.setName(brandName);
             brandManager.update(brand);
             return SUCCESS;
         }
@@ -55,6 +62,7 @@ public class BrandAction extends BaseAction {
     public Brand getBrand() {
         return brand;
     }
+
 
     public void setBrand(Brand brand) {
         this.brand = brand;
@@ -68,11 +76,11 @@ public class BrandAction extends BaseAction {
         this.brandId = brandId;
     }
 
-    public String getName() {
-        return name;
+    public String getBrandName() {
+        return brandName;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    @RequiredStringValidator(message = "Please input brand name")
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 }

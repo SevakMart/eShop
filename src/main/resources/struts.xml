@@ -118,6 +118,7 @@
         <!--brand actions-->
         <action name="addBrand" class="action.BrandAction" method="addBrand">
             <result name="success" type="redirect">admin.action</result>
+            <result name="input">/WEB-INF/pages/admin.jsp</result>
         </action>
 
         <action name="deleteBrand" class="action.BrandAction" method="delete">
@@ -130,6 +131,7 @@
 
         <action name="updateBrand" class="action.BrandAction" method="update">
             <result name="success" type="redirect">admin.action</result>
+            <result name="input">/WEB-INF/pages/admin.jsp</result>
         </action>
 
         <!--wish list actions-->
@@ -172,6 +174,7 @@
 
         <action name="updateCategory" class="action.CategoryAction" method="update">
             <result name="success" type="redirect">admin.action</result>
+            <result name="input">/WEB-INF/pages/admin.jsp</result>
         </action>
 
     </package>

@@ -19,7 +19,7 @@
             <div id="addCategory">
                 <h4>Add category</h4>
                 <s:form action="addCategory" method="POST">
-                    <s:textfield name="name" label="Category name"/>
+                    <s:textfield name="categoryName" label="Category name"/>
                     <s:select list="%{#application.categories}" label="parent category"
                               headerKey="0" headerValue="------"
                               listKey="key.id" listValue="key.name"/>
@@ -30,9 +30,9 @@
         <s:else>
             <div id="updateCategory">
                 <h4>Update category</h4>
-                <s:form action="updateCategory" method="POST">
+                <s:form action="updateCategory" method="POST" validate="true">
                     <s:hidden name="id" value="%{id}"/>
-                    <s:textfield name="name" label="Category name" value="%{category.name}"/>
+                    <s:textfield name="categoryName" label="Category name" value="%{category.name}"/>
                     <s:select list="%{#application.categories}" label="parent category"
                               headerKey="0" headerValue="------"
                               listKey="key.id" listValue="key.name"/>
@@ -63,7 +63,7 @@
             <div id="addBrand">
                 <h4>add brand</h4>
                 <s:form action="addBrand" method="POST">
-                    <s:textfield label="Brand name" name="name"/>
+                    <s:textfield label="Brand name" name="brandName"/>
                     <s:submit value="Add Brand"/>
                 </s:form>
             </div>
@@ -72,7 +72,7 @@
             <h4>update brand</h4>
             <s:form action="addBrand" method="POST">
                 <s:hidden name="brandId" value="%{brand.id}"/>
-                <s:textfield label="Brand name" name="name" value="%{brand.name}"/>
+                <s:textfield label="Brand name" name="brandName" value="%{brand.name}"/>
                 <s:submit value="Add Brand"/>
             </s:form>
         </s:else>
