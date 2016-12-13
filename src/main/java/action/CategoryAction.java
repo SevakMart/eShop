@@ -41,6 +41,7 @@ public class CategoryAction extends BaseAction {
         return INPUT;
     }
 
+    @SkipValidation
     public String view() {
         allCategories = categoryManager.getAll();
         category = categoryManager.getEntityByID(id);
@@ -72,6 +73,7 @@ public class CategoryAction extends BaseAction {
     public String getCategoryName() {
         return categoryName;
     }
+
     @RequiredStringValidator(message = "please input category name")
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;

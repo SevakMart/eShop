@@ -7,6 +7,8 @@ import model.Category;
 import model.Image;
 import model.Products;
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.interceptor.validation.SkipValidation;
+import util.Validator;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,24 +36,34 @@ public class ProductsAction extends BaseAction {
         productsManager = new ProductsManager();
     }
 
+    @Override
+    public void validate() {
+        if (Validator.isEmpty(name)) addFieldError("name", "please enter name for product");
+        if (Validator.isEmpty(description)) addFieldError("description", "description field is required");
+        if (!Validator.isNumber(brandId)) addFieldError("brandId", "invalid value for field brand");
+        if (!Validator.isNumber(categoryId)) addFieldError("categoryId", "invalid value for field Category");
+    }
 
     @Override
+    @SkipValidation
     public String execute() throws Exception {
         products = (ArrayList<Products>) productsManager.getAll();
         return SUCCESS;
     }
 
-
+    @SkipValidation
     public String getProductsByCatId() {
         products = (ArrayList<Products>) productsManager.getProductByCatId(Integer.parseInt(categoryId));
         return SUCCESS;
     }
 
+    @SkipValidation
     public String getProductsDetails() {
         product = productsManager.getEntityByID(Integer.parseInt(productId));
         return SUCCESS;
     }
 
+    @SkipValidation
     public String getProductsByBrandId() {
 
         products = (ArrayList<Products>) productsManager.getProductsByBrandId(Integer.parseInt(brandId));
@@ -59,6 +71,7 @@ public class ProductsAction extends BaseAction {
         return SUCCESS;
     }
 
+    @SkipValidation
     public String search() {
         products = (ArrayList<Products>) productsManager.searchProductsByName(name);
         return SUCCESS;
@@ -106,6 +119,7 @@ public class ProductsAction extends BaseAction {
         return SUCCESS;
     }
 
+    @SkipValidation
     public String delete() {
         product = productsManager.getEntityByID(Integer.parseInt(productId));
         if (product != null) {
@@ -115,6 +129,7 @@ public class ProductsAction extends BaseAction {
         return ERROR;
     }
 
+    @SkipValidation
     public String view() {
         product = productsManager.getEntityByID(Integer.parseInt(productId));
         if (product != null) return SUCCESS;

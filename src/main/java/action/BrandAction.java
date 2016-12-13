@@ -54,6 +54,8 @@ public class BrandAction extends BaseAction {
         if (brand != null) {
             brand.setName(brandName);
             brandManager.update(brand);
+            brands = brandManager.getAll();
+            application.put("brands", brands);
             return SUCCESS;
         }
         return ERROR;

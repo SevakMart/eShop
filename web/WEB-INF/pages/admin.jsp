@@ -97,6 +97,7 @@
         <div id="addProduct" style="float: left; width: 35%">
             <s:if test="%{product==null }">
                 <h4>Add product</h4>
+                <s:set var="categories" value="%{#application.categories}"/>
                 <s:form action="addProduct" method="POST" enctype="multipart/form-data">
                     <s:textfield name="name" label="Product`s name"/>
                     <s:textfield name="price" label="Price"/>
@@ -104,9 +105,13 @@
                     <s:select list="%{#application.brands}" name="brandId"
                               headerValue="-----" headerKey="0" label="Brand"
                               listKey="id" listValue="name"/>
-                    <s:select list="%{#application.categories}" label="Categories" name="categoryId"
-                              headerKey="0" headerValue="-----"
-                              listKey="key.id" listValue="key.name"/>
+                    <%--<s:select list="%{#application.categories}" label="Categories" name="categoryId"--%>
+                              <%--headerKey="0" headerValue="-----"--%>
+                              <%--listKey="key.id" listValue="value"/>--%>
+                    <s:doubleselect list="%{#application.categories}" label="Categories" name="categoryId"
+                                    headerKey="0" headerValue="-----"
+                                    listKey="key" listValue="key.name"
+                                    doubleList="#categories[categoryId]" doubleName="subcategoryId" doubleListValue="value.name" doubleListKey="value.id"/>
                     <s:file label="main picture" name="main" multiple="multiple"/>
                     <s:submit value="Add Product"/>
                 </s:form>

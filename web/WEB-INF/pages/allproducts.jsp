@@ -16,7 +16,8 @@
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <img src="images/shop/product12.jpg" alt=""/>
+                            <s:set var="image" value="imageList[0]"/>
+                            <img width="150" height="300" src="showImage.action?imageId=<s:property value="#image.path"/>" alt=""/>
                             <h2>$<s:property value="price"/></h2>
                             <p><s:property value="name"/></p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to

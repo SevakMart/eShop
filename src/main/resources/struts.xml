@@ -11,6 +11,7 @@
 
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+            <result-type name="imageResult" class="customresult.CustomImageBytesResult"/>
         </result-types>
 
         <interceptors>
@@ -80,6 +81,10 @@
         <action name="checkout" class="action.CheckOutAction">
             <interceptor-ref name="authenticationStack"/>
             <result name="success" type="tiles">checkout.view</result>
+        </action>
+
+        <action name="showImage" class="action.ImageAction">
+            <result name="success" type="imageResult"></result>
         </action>
 
         <action name="cart" class="action.CartAction">
